@@ -39,10 +39,6 @@ public class FarmerService {
                 .login(faker.bothify("???????"));
 
         if(faker.number().numberBetween(1, 100) < 20){
-            farmer.team_id((long) faker.number().numberBetween(1, 20));
-        }
-
-        if(faker.number().numberBetween(1, 100) < 20){
             farmer.godfather_id((long) faker.number().numberBetween(1, 20));
         }
 

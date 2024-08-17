@@ -2,6 +2,10 @@ package org.portevent.springpotager.models;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.util.List;
 
@@ -15,19 +19,38 @@ import java.util.List;
 public class Farmer {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "farmer", cascade = CascadeType.PERSIST)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "farmer", cascade = CascadeType.ALL)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private List<Leek> leeks;
 
     private String login;
 
-    private Long team_id;
+    @ManyToOne
+    @JoinColumn(name = "team_id", referencedColumnName = "id")
+    private Team team;
+
+    @OneToMany
+    private List<FarmerWeapon> weapons;
+
+    @OneToMany
+    private List<FarmerChip> chips;
+
+    @OneToMany
+    private List<FarmerItem> items;
+
+    @OneToMany
+    private List<Ai> ais;
+
+    @OneToMany
+    private List<AiFolder> folders;
 
     private String name;
 
     private Integer talent;
+
+    private Long avatar_changed;
 
     private Integer talent_more;
 

@@ -20,11 +20,14 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
+    private String login;
 
     private String mail;
 
     private String password;
+
+    @OneToOne(cascade = CascadeType.PERSIST)
+    private Token token;
 
     @Override
     public boolean equals(Object o) {

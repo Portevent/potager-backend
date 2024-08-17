@@ -1,9 +1,14 @@
 package org.portevent.springpotager.controller;
 
-import org.portevent.springpotager.dto.AccountCreationDTO;
-import org.portevent.springpotager.dto.AccountDTO;
+import org.portevent.springpotager.dto.account.AccountCreationDTO;
+import org.portevent.springpotager.dto.account.AccountDTO;
+import org.portevent.springpotager.dto.farmer.PublicFarmerDto;
 import org.portevent.springpotager.mapper.AccountMapper;
+import org.portevent.springpotager.mapper.FarmerMapper;
+import org.portevent.springpotager.models.Farmer;
 import org.portevent.springpotager.service.AccountService;
+import org.portevent.springpotager.service.FarmerService;
+import org.portevent.springpotager.service.LeekwarsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +23,16 @@ public class AccountController {
     private AccountService accountService;
 
     @Autowired
+    private LeekwarsService leekwarsService;
+
+    @Autowired
     private AccountMapper accountMapper;
+
+    @Autowired
+    private FarmerMapper farmerMapper;
+    
+    @Autowired
+    private FarmerService farmerService;
 
     @GetMapping
     public List<AccountDTO> getAccounts() {
@@ -53,5 +67,14 @@ public class AccountController {
     @DeleteMapping("/{id}")
     void deleteAccount(@PathVariable Long id) {
         accountService.deleteAccount(id);
+    }
+
+    @GetMapping("/login/{id}")
+    Farmer login(@PathVariable Long id) {
+        PublicFarmerDto farmerDto = leekwarsService.login(accountService.getAccount(id).orElseThrow());
+
+        Farmer farmer = farmerMapper.fromPublic(farmerDto);
+
+        return farmerService.saveFarmer(farmer);
     }
 }

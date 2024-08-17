@@ -34,7 +34,7 @@ public class AccountService {
     public Account getFakeAccount() {
         Faker faker = new Faker();
         return Account.builder()
-                .name(faker.name().firstName())
+                .login(faker.name().firstName())
                 .mail(faker.internet().emailAddress())
                 .password(faker.bothify("???????"))
                 .build();

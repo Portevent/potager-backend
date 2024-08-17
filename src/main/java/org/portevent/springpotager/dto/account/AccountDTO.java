@@ -1,4 +1,4 @@
-package org.portevent.springpotager.dto;
+package org.portevent.springpotager.dto.account;
 
 import lombok.Data;
 
@@ -6,7 +6,7 @@ import lombok.Data;
 public class AccountDTO {
     private Long id;
 
-    private String name;
+    private String login;
 
     private String mail;
 }
