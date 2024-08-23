@@ -3,7 +3,7 @@ package org.portevent.springpotager.dto;
 import lombok.Data;
 
 @Data
-public class TeamDTO {
+public class TeamDescriptionDTO {
 
     private Long id;
 

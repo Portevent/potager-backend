@@ -1,10 +1,10 @@
-package org.portevent.springpotager.dto.leek;
+package org.portevent.springpotager.dto.leekwars;
 
 import lombok.Data;
 import org.portevent.springpotager.dto.HatDTO;
 
 @Data
-public class PublicLeekDto {
+public class LeekwarsLeekDto {
 
     protected Long id;
 

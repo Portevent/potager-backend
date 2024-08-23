@@ -2,13 +2,12 @@ package org.portevent.springpotager.service;
 
 import org.mariadb.jdbc.internal.logging.Logger;
 import org.mariadb.jdbc.internal.logging.LoggerFactory;
-import org.portevent.springpotager.dto.farmer.PublicFarmerDto;
-import org.portevent.springpotager.dto.leekwars.getFarmerRequestDto;
+import org.portevent.springpotager.dto.leekwars.LeekwarsFarmerDto;
+import org.portevent.springpotager.dto.leekwars.getFarmer.getFarmerRequestDto;
 import org.portevent.springpotager.dto.leekwars.login.LoginRequestDto;
 import org.portevent.springpotager.dto.leekwars.login.LoginResponseDto;
 import org.portevent.springpotager.dto.leekwars.spendCapital.SpendCapitalRequestArray;
 import org.portevent.springpotager.dto.leekwars.spendCapital.SpendCapitalRequestDto;
-import org.portevent.springpotager.mapper.FarmerMapper;
 import org.portevent.springpotager.mapper.TokenMapper;
 import org.portevent.springpotager.models.Account;
 import org.portevent.springpotager.models.Leek;
@@ -38,14 +37,14 @@ public class LeekwarsService {
     }
 
     // FIXME
-    public PublicFarmerDto getFarmer(String id) {
+    public LeekwarsFarmerDto getFarmer(String id) {
         return Objects.requireNonNull(
                 this.restClient.get().uri("/farmer/get/{id}", id)
                         .retrieve().body(getFarmerRequestDto.class)
         ).getFarmer();
     }
 
-    public PublicFarmerDto login(Account account) {
+    public LeekwarsFarmerDto login(Account account) {
         LoginRequestDto loginRequestDto = LoginRequestDto.builder()
                 .keep_connected(true)
                 .login(account.getLogin())

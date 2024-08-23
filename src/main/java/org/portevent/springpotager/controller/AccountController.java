@@ -2,9 +2,10 @@ package org.portevent.springpotager.controller;
 
 import org.portevent.springpotager.dto.account.AccountCreationDTO;
 import org.portevent.springpotager.dto.account.AccountDTO;
-import org.portevent.springpotager.dto.farmer.PublicFarmerDto;
+import org.portevent.springpotager.dto.leekwars.LeekwarsFarmerDto;
 import org.portevent.springpotager.mapper.AccountMapper;
 import org.portevent.springpotager.mapper.FarmerMapper;
+import org.portevent.springpotager.mapper.LeekwarsFarmerMapper;
 import org.portevent.springpotager.models.Farmer;
 import org.portevent.springpotager.service.AccountService;
 import org.portevent.springpotager.service.FarmerService;
@@ -29,7 +30,7 @@ public class AccountController {
     private AccountMapper accountMapper;
 
     @Autowired
-    private FarmerMapper farmerMapper;
+    private LeekwarsFarmerMapper leekwarsFarmerMapper;
     
     @Autowired
     private FarmerService farmerService;
@@ -71,9 +72,9 @@ public class AccountController {
 
     @GetMapping("/login/{id}")
     Farmer login(@PathVariable Long id) {
-        PublicFarmerDto farmerDto = leekwarsService.login(accountService.getAccount(id).orElseThrow());
+        LeekwarsFarmerDto farmerDto = leekwarsService.login(accountService.getAccount(id).orElseThrow());
 
-        Farmer farmer = farmerMapper.fromPublic(farmerDto);
+        Farmer farmer = leekwarsFarmerMapper.toEntity(farmerDto);
 
         return farmerService.saveFarmer(farmer);
     }

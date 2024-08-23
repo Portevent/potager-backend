@@ -1,26 +1,26 @@
-package org.portevent.springpotager.dto.farmer;
+package org.portevent.springpotager.dto.leekwars;
 
 import lombok.*;
-import org.portevent.springpotager.dto.TeamDTO;
-import org.portevent.springpotager.dto.leek.PublicLeekDto;
+import org.portevent.springpotager.dto.TeamDescriptionDTO;
+import org.portevent.springpotager.dto.farmer.FarmerNameDto;
 
 import java.util.List;
 import java.util.Map;
 
 @Data
-public class PublicFarmerDto {
+public class LeekwarsFarmerDto {
 
     protected Long id;
 
     protected String login;
 
-    protected TeamDTO team;
+    protected TeamDescriptionDTO team;
 
     protected String name;
 
     protected Integer talent;
 
-    protected Map<Long, PublicLeekDto> leeks;
+    protected Map<Long, LeekwarsLeekDto> leeks;
 
     protected Long avatar_changed;
 
@@ -120,9 +120,9 @@ public class PublicFarmerDto {
 
     protected Integer godsons_level;
 
-    private Boolean pass;
+    protected Boolean pass;
 
-    private Integer habs;
+    protected Integer habs;
 
-    private Integer crystals;
+    protected Integer crystals;
 }

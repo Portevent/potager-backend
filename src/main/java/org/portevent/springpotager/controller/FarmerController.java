@@ -1,7 +1,7 @@
 package org.portevent.springpotager.controller;
 
 import org.portevent.springpotager.dto.farmer.FarmerDto;
-import org.portevent.springpotager.dto.farmer.PublicFarmerDto;
+import org.portevent.springpotager.dto.leekwars.LeekwarsFarmerDto;
 import org.portevent.springpotager.mapper.FarmerMapper;
 import org.portevent.springpotager.service.FarmerService;
 import org.portevent.springpotager.service.LeekwarsService;
@@ -48,7 +48,7 @@ public class FarmerController {
 
 
     @GetMapping("/public/{id}")
-    PublicFarmerDto getPublic(@PathVariable Long id) {
+    LeekwarsFarmerDto getPublic(@PathVariable Long id) {
         return leekwarsService.getFarmer(String.valueOf(id));
     }
 
